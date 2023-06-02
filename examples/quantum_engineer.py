@@ -8,7 +8,6 @@ from scipy.integrate import solve_ivp
 
 sys.path.insert(1, "../src/")
 from transmon import Transmon
-from fluxonium import Fluxonium
 
 def plot_pi_pulse(t, dT, U, y_0, signal):
     y = np.zeros((len(t), 3), dtype = np.cdouble)
@@ -30,7 +29,7 @@ def plot_pi_pulse(t, dT, U, y_0, signal):
     ax.tick_params(axis='both', which='major', labelsize=12)
     ax.legend(loc = "center", ncol = 5, bbox_to_anchor = (0.5, 1.07), framealpha = 1)
     plt.grid()
-    plt.show()
+    plt.savefig(f"../figures/transmon_{np.round(dT, 2)}_{signal}.pdf", dpi = 600)
     plt.close()
 
 def plot_transmon_states(transmon):
@@ -56,7 +55,7 @@ def plot_transmon_states(transmon):
     ax2.set_yticks(np.concatenate([[np.amin(np.real(transmon.V.diagonal(0)))], transmon.E, [np.amax(np.real(transmon.V.diagonal(0)))]]))
     ax2.set_yticklabels(["V$_{min}$"] + [f"E$_{i}$" for i in range(len(transmon.E))] + ["V$_{max}$"])
     ax1.legend(loc = "center", ncol = 5, bbox_to_anchor = (0.5, 1.07), framealpha = 1)
-    plt.show()
+    plt.savefig("../figures/transmon_states.pdf", dpi = 600)
     plt.close()
 
 def plot_H_c(qubit):
@@ -72,7 +71,7 @@ def plot_H_c(qubit):
     plt.imshow(H_c, cmap = "coolwarm")
     cbar = plt.colorbar(ticks = [0, g1, g2], )
     cbar.ax.set_yticklabels(["0", "$g_1$", "$g_2$"])
-    plt.show()
+    plt.savefig("../figures/transmon_H_c.pdf", dpi = 600)
     plt.close()
 
 if __name__ == "__main__":

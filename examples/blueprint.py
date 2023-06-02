@@ -32,7 +32,7 @@ def plot_fluxonium_states(fluxonium):
     ax2.legend(loc = "center", ncol = 5, bbox_to_anchor = (0.5, 1.07), framealpha = 1)
     ax1.yaxis.set_minor_locator(tck.AutoMinorLocator())
     ax1.xaxis.set_minor_locator(tck.AutoMinorLocator())
-    plt.show()
+    plt.savefig("../figures/fluxonium_states.pdf", dpi = 600)
     plt.close()
 
 def plot_fluxonium_transition_energy_spectrum(energies, phi_external_list):
@@ -54,7 +54,8 @@ def plot_fluxonium_transition_energy_spectrum(energies, phi_external_list):
     plt.xlim(0, 1)
     plt.legend(loc = "center", ncol = 3, bbox_to_anchor = (0.5, 1.04), framealpha = 1)
     plt.grid()
-    plt.show()
+    plt.savefig("../figures/fluxonium_transition_energy_spectrum.pdf", dpi = 600)
+    plt.close()
 
 def plot_fluxonium_energy_relaxation_times(E_j_list, E_l_list, storage):
     fig = plt.figure()
@@ -72,8 +73,7 @@ def plot_fluxonium_energy_relaxation_times(E_j_list, E_l_list, storage):
     cbar.ax.set_ylabel('T$_1$ [$\mu$s]', rotation = 270, labelpad=25, fontsize = 15)
     cbar.ax.set_yticks([300, 400, 500, 600, 700, 800, 900, 1000])
     cbar.ax.tick_params(labelsize=12)
-    plt.savefig("T1_1.pdf")
-    plt.show()
+    plt.savefig("../figures/fluxonium_energy_relaxation_times.pdf", dpi = 600)
     plt.close()
 
 def E3_b1():
@@ -167,12 +167,11 @@ def boom():
     lines1, labels1 = ax1.get_legend_handles_labels()
     lines2, labels2 = ax2.get_legend_handles_labels()
     plt.legend(lines1 + lines2, labels1 + labels2, loc = "center", ncol = 2, bbox_to_anchor = (0.5, 1.04))
-    plt.show()
-    
+    plt.savefig("../figures/multi_fluxonium_coupling.pdf", dpi = 600)
+    plt.close()
 
 if __name__ == "__main__":
     E3_b1()
-    #E3_b2()
-    #E3_c()
-    #boom()
-
+    E3_b2()
+    E3_c()
+    boom()

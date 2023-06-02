@@ -125,14 +125,15 @@ print(f"\nFidelity_modified: {fidelity_modified}")
 fig = plt.figure()
 plt.title("COUPLING")
 plt.plot(sol.t, g(sol.t), color = "darkblue")
-plt.show()
+plt.savefig("../figures/tunable_coupler_coupling.pdf", dpi = 600)
+plt.close()
 
 fig = plt.figure()
 plt.plot(t, w_c(t), color = "darkred")
 plt.title("w_c")
-plt.show()
+plt.savefig("../figures/tunable_coupler_w_c.pdf", dpi = 600)
+plt.close()
 
-fig = plt.figure()
 y_0_00 = np.array([1.0, 0.0, 0.0, 0.0], dtype = np.cdouble)
 y_0_01 = np.array([0.0, 1.0, 0.0, 0.0], dtype = np.cdouble)
 y_0_10 = np.array([0.0, 0.0, 1.0, 0.0], dtype = np.cdouble)
@@ -144,9 +145,12 @@ for i in range(len(sol.t)):
     for j, y_0 in enumerate(y_0_list):
         y = U[:, :, i] @ y_0_real 
         probs[i, j] = np.abs(np.vdot(y_0, y)) ** 2
+
+fig = plt.figure()
 plt.plot(sol.t, probs[:, 0], label ="|00>")
 plt.plot(sol.t, probs[:, 1], label ="|01>")
 plt.plot(sol.t, probs[:, 2], label ="|10>")
 plt.plot(sol.t, probs[:, 3], label ="|11>")
 plt.legend()
-plt.show()
+plt.savefig("../figures/tunable_coupler_iSWAP.pdf", dpi = 600)
+plt.close()
