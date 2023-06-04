@@ -22,7 +22,6 @@ class Circuit(ABC):
 
         # compute eigenvalues and eigenvectors
         self.E, self.psi = self.solve_circuit(n)
-        self.psi = np.real(self.psi)
 
         # anharmonicity
         self.alpha = self.E[2] - 2 * self.E[1] + self.E[0]
